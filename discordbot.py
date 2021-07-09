@@ -19,3 +19,23 @@ async def ping(ctx):
 
 
 bot.run(token)
+
+@bot.command()
+async def darts(ctx: commands.Context, channel_name: str):
+    if ctx.author.bot:
+        return
+
+    await ctx.message.delete()
+
+    channel_name = channel_name.lstrip("#")
+    channels = ctx.guild.voice_channels  # ボイスチャンネルリストを取得
+    for ch in channels:
+        if ch.name == channel_name:
+            if not ch.members:
+                await ctx.send(f"#{channel_name}には誰もいません")
+                return
+            member = random.choice(ch.members)
+            await member.send("あなたが狂人に選ばれました！")
+            return
+
+    await ctx.send(f"#{channel_name}が存在しません")
