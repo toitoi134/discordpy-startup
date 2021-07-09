@@ -28,19 +28,19 @@ from typing import Optional
 
 intents = discord.Intents.default()
 intents.members = True
-bot = commands.Bot(command_prefix=".", intents=intents)
+bot = commands.Bot(command_prefix="/", intents=intents)
 
 
 @bot.command()
-async def darts(ctx: commands.Context, channel_name: str, name: Optional[str] = None):
+async def darts(ctx: commands.Context,　一般: str, name: Optional[str] = None):
     if ctx.author.bot:
         return
     await ctx.message.delete()
 
-    channel_name = channel_name.lstrip("#")
+    一般 = 一般.lstrip("#")
     channels = ctx.guild.voice_channels
     for ch in channels:
-        if ch.name == channel_name:
+        if ch.name == 一般:
             if not ch.members:
                 await ctx.send(f"#{一般}には誰もいません")
                 return
@@ -49,7 +49,7 @@ async def darts(ctx: commands.Context, channel_name: str, name: Optional[str] = 
             await member.send(msg)
             return
 
-    await ctx.send(f"#{channel_name}が存在しません")
+    await ctx.send(f"#{一般}が存在しません")
 
 
 TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
