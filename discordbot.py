@@ -42,10 +42,10 @@ async def darts(ctx: commands.Context, channel_name: str, name: Optional[str] = 
     for ch in channels:
         if ch.name == channel_name:
             if not ch.members:
-                await ctx.send(f"#{channel_name}には誰もいません")
+                await ctx.send(f"#{一般}には誰もいません")
                 return
             member = random.choice(ch.members)
-            msg = f"{name}に選ばれました！" if name is not None else "あなたが選ばれました！"
+            msg = f"{狂人}に選ばれました！" if name is not None else "あなたが選ばれました！"
             await member.send(msg)
             return
 
