@@ -30,7 +30,7 @@ bot = commands.Bot(command_prefix=".", intents=intents)
 
 
 @bot.command()
-async def darts(ctx: commands.Context, channel_name: str, name: Optional[str] = None):
+async def da(ctx: commands.Context, channel_name: str, name: Optional[str] = None):
     if ctx.author.bot:
         return
     await ctx.message.delete()
