@@ -20,6 +20,17 @@ async def ping(ctx):
 
 bot.run(token)
 
+import os
+import random
+import discord
+from discord.ext import commands
+from typing import Optional
+
+intents = discord.Intents.default()
+intents.members = True
+bot = commands.Bot(command_prefix=".", intents=intents)
+
+
 @bot.command()
 async def darts(ctx: commands.Context, channel_name: str):
     if ctx.author.bot:
