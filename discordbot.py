@@ -44,6 +44,7 @@ async def darts(ctx: commands.Context, channel_name: str, name: Optional[str] = 
                 return
             member = random.choice(ch.members)
             msg = f"{狂人}に選ばれました！" if name is not None else "あなたが狂人に選ばれました！"
+            msg = f"{狂人}に選ばれました！" if name is not None else "クルーが全員タスクを終わらせてた場合インポスター側の負けになります。"
             await member.send(msg)
             return
 
