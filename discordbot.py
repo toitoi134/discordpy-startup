@@ -18,39 +18,23 @@ async def ping(ctx):
     await ctx.send('pong')
 
 
-bot.run(token)
-
-import os
-import random
-import discord
-from discord.ext import commands
-from typing import Optional
-
-intents = discord.Intents.default()
-intents.members = True
-bot = commands.Bot(command_prefix="/", intents=intents)
-
-
 @bot.command()
-async def darts(ctx: commands.Context,　一般: str, name: Optional[str] = None):
+async def darts(ctx: commands.Context, channel_name: str):
     if ctx.author.bot:
         return
+
     await ctx.message.delete()
 
-    一般 = 一般.lstrip("#")
-    channels = ctx.guild.voice_channels
+    channel_name = channel_name.lstrip("#")
+    channels = ctx.guild.voice_channels  # ボイスチャンネルリストを取得
     for ch in channels:
-        if ch.name == 一般:
+        if ch.name == channel_name:
             if not ch.members:
-                await ctx.send(f"#{一般}には誰もいません")
+                await ctx.send(f"#{channel_name}には誰もいません")
                 return
             member = random.choice(ch.members)
-            msg = f"{狂人}に選ばれました！" if name is not None else "あなたが選ばれました！"
-            await member.send(msg)
+            await member.send("あなたが選ばれました！")
             return
 
-    await ctx.send(f"#{一般}が存在しません")
-
-
-TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
-bot.run(TOKEN)
+    await ctx.send(f"#{channel_name}が存在しません")
+    
